@@ -20,7 +20,7 @@ export const ProductList = () => {
   const [sortOption, setSortOption] = useState('');
   const [categories, setCategories] = useState([]);
   const email = useSelector((state) => state.auth.correo);
-  const role = useSelector((state) => state.auth.value)
+  const role = useSelector((state) => state.auth)
   const [showModal, setShowModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
