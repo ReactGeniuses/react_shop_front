@@ -83,10 +83,12 @@ const UserProfileForm = () => {
   };
 
   const handleAuthAccept = () => {
+    dispatch(clearCart());
     navigate("/Signup");
   };
 
   const handleLogin = () => {
+    dispatch(clearCart());
     navigate("/Login");
   };
 
