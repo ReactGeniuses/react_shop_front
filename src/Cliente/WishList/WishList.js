@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Button, Modal} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import { clearCart } from '../../Store/cartSlice';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import DeleteWishlistModal from './WishListDelete';
+import { useDispatch } from "react-redux";
 
 const PRODUCT_URI = "https://shopp-7acee9852abd.herokuapp.com/product/";
 const WISH_URI = "https://shopp-7acee9852abd.herokuapp.com/wish/";
@@ -18,6 +19,7 @@ const Wishlist = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const navigate = useNavigate();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const dispatch = useDispatch();
 
   const fetchWishlist = useCallback(async () => {
     try {
@@ -68,9 +70,11 @@ const Wishlist = () => {
     navigate("/");
   };
   const handleAuthAccept = () => {
+    dispatch(clearCart());
     navigate("/Signup");
   };
   const handleLogin = () => {
+    dispatch(clearCart());
     navigate("/Login");
   };
   const handleShow = (item) => {

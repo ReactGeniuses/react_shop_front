@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../Store/AuthSlice";
 import { useSelector } from "react-redux";
+import { clearCart } from '../Store/cartSlice'; 
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export const NavBar = () => {
 
   const logOutHandler = () => {
     dispatch(logOut());
+    dispatch(clearCart());
     navigate("/Login");
   };
 
