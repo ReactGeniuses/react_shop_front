@@ -10,6 +10,8 @@ import AddCardModal from "./Tarjeta/AddCardModal";
 import EditCardModal from "./Tarjeta/EditCardModal";
 import DeleteCardModal from "./Tarjeta/DeleteCardModal";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import { clearCart } from '../Store/cartSlice'; 
+import { useDispatch } from "react-redux";
 
 const Usuario_URI = "https://shopp-7acee9852abd.herokuapp.com/usuario/";
 const Direccion_URI = "https://shopp-7acee9852abd.herokuapp.com/direccion/";
