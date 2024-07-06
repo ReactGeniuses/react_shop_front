@@ -6,8 +6,10 @@ import AddWishlistModal from "../Cliente/WishList/WishListAdd";
 import SortingDropdown from '../Menu/SortingDropdown'; // Import the new dropdown component
 import SearchBar from "../Menu/SearchBarProduct";
 import ViewProductModal from "./DetailsProduct"
+
 const PRODUCT_URI = "https://shopp-7acee9852abd.herokuapp.com/product/";
 const WISH_URI = "https://shopp-7acee9852abd.herokuapp.com/wish/";
+const CATEGORY_URI = "https://shopp-7acee9852abd.herokuapp.com/category/";
 
 export const ProductList = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ export const ProductList = () => {
   const [error, setError] = useState('');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [sortOption, setSortOption] = useState('');
+  const [categories, setCategories] = useState([]);
   const email = useSelector((state) => state.auth.correo);
   const role = useSelector((state) => state.auth.value)
   const [showModal, setShowModal] = useState(false);
@@ -36,21 +39,37 @@ export const ProductList = () => {
   };
   const handleSearch = async (term, type) => {
     try {
-      console.log(term);
-      console.log(type);
-  
-      const res = await axios.get(`${PRODUCT_URI}search`, { params: { query: term, type } });
+      let queryParam = term;
+      if (type === "categoria") {
+        const selectedCategory = categories.find(category => category.CategoryName === term);
+        if (selectedCategory) {
+          queryParam = selectedCategory.Id;
+        } else {
+          throw new Error('Categoría no encontrada');
+        }
+      }
+
+      const res = await axios.get(`${PRODUCT_URI}search`, { params: { query: queryParam, type } });
       setProducts(res.data);
-      setSortedProducts(res.data); // Actualiza también el estado de sortedProducts
+      setSortedProducts(res.data);
       setError('');
     } catch (error) {
       console.error("Error al buscar productos:", error);
       setError('Error al buscar productos');
       setProducts([]);
-      setSortedProducts([]); // Limpia también el estado de sortedProducts en caso de error
+      setSortedProducts([]);
     }
   };
   
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(CATEGORY_URI);
+      setCategories(res.data);
+      console.log("Categorias obtenidas:", res.data);
+    } catch (error) {
+      console.error("Error al obtener las categorías:", error);
+    }
+  };
 
   useEffect(() => {
     getProducts();
@@ -128,8 +147,8 @@ export const ProductList = () => {
 
   return (
     <div className="container">
-      <SortingDropdown onSortChange={handleSortChange} /> {/* Move the dropdown outside */}
-      <SearchBar onSearch={handleSearch} />
+      <SortingDropdown onSortChange={handleSortChange} />
+      <SearchBar onSearch={handleSearch} categories={categories} />
       <div className="container-items">
         {error && (
           <div className="alert alert-danger mt-3">{error}</div>
