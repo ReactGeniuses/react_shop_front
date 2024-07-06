@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { addProduct } from "../Store/cartSlice";
 import AddWishlistModal from "../Cliente/WishList/WishListAdd";
-import SortingDropdown from '../Menu/SortingDropdown';
+import SortingDropdown from '../Menu/SortingDropdown'; 
 import SearchBar from "../Menu/SearchBarProduct";
 import ViewProductModal from "./DetailsProduct"
 
@@ -20,7 +20,7 @@ export const ProductList = () => {
   const [sortOption, setSortOption] = useState('');
   const [categories, setCategories] = useState([]);
   const email = useSelector((state) => state.auth.correo);
-  const role = useSelector((state) => state.auth)
+  const role = useSelector((state) => state.auth.value);
   const [showModal, setShowModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
@@ -28,15 +28,16 @@ export const ProductList = () => {
     try {
       const res = await axios.get(PRODUCT_URI);
       setProducts(res.data);
-      setSortedProducts(res.data); // Inicialmente, sortedProducts es igual a products
+      setSortedProducts(res.data);
       setError('');
     } catch (error) {
       console.error("Error al cargar los productos:", error);
       setError('Error al cargar los productos');
       setProducts([]);
-      setSortedProducts([]); // Manejo del estado sortedProducts
+      setSortedProducts([]);
     }
   };
+
   const handleSearch = async (term, type) => {
     try {
       let queryParam = term;
@@ -60,7 +61,7 @@ export const ProductList = () => {
       setSortedProducts([]);
     }
   };
-  
+
   const fetchCategories = async () => {
     try {
       const res = await axios.get(CATEGORY_URI);
@@ -78,7 +79,7 @@ export const ProductList = () => {
 
   useEffect(() => {
     sortProducts();
-  }, [sortOption,]);
+  }, [sortOption]);
 
   const handleCloseSuccessModal = () => setShowSuccessModal(false);
 
@@ -167,8 +168,8 @@ export const ProductList = () => {
             <div className="info-product">
               <h2>{product.ProductName}</h2>
               <p className="price">${product.Price}</p>
-              <p className="Descripcion1">{product.Descripiton1}</p>
-              <p className="Descripcion2">{product.Descripiton2}</p>
+              <p className="Descripcion1">{product.Descripcion1}</p>
+              <p className="Descripcion2">{product.Descripcion2}</p>
               <p className="stock">Stock: {product.Quantity}</p>
               <button onClick={() => onAddProduct(product)}>
                 Añadir al carrito
@@ -184,16 +185,15 @@ export const ProductList = () => {
             </div>
           </div>
         ))}
-        {/* Modal de éxito para añadir a la lista de deseos */}
         <AddWishlistModal
           show={showSuccessModal}
           handleClose={handleCloseSuccessModal}
         />
-         <ViewProductModal
-        show={showModal}
-        handleClose={handleCloseModal}
-        productId={selectedProductId}
-      />
+        <ViewProductModal
+          show={showModal}
+          handleClose={handleCloseModal}
+          productId={selectedProductId}
+        />
       </div>
     </div>
   );
