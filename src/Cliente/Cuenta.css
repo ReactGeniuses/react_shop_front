@@ -55,6 +55,10 @@
   .table td {
     background-color: #f4f4f4;
   }
+
+  .table-column-width {
+    width: 1000px;
+  }
   
   /* Button styles */
   .btn-warning, .btn-danger {
