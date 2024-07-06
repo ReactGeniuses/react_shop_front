@@ -147,8 +147,8 @@ export const ProductList = () => {
             <div className="info-product">
               <h2>{product.ProductName}</h2>
               <p className="price">${product.Price}</p>
-              <p className="Descripcion1">{product.Descripcion1}</p>
-              <p className="Descripcion2">{product.Descripcion2}</p>
+              <p className="Descripcion1">{product.Descripiton1}</p>
+              <p className="Descripcion2">{product.Descripiton2}</p>
               <p className="stock">Stock: {product.Quantity}</p>
               <button onClick={() => onAddProduct(product)}>
                 Añadir al carrito
