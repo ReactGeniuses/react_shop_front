@@ -5,6 +5,22 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
+	/* Modal styles */
+	.modal-header {
+		background-color: #143959;
+		color: #fff;
+	  }
+	  
+	  .modal-footer .btn-secondary {
+		background-color: #6c757d;
+		border-color: #6c757d;
+	  }
+	  
+	  .modal-footer .btn-primary {
+		background-color: #143959;
+		border-color: #143959;
+	  }  
 }
 
 body {

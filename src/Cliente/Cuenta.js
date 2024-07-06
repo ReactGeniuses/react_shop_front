@@ -11,7 +11,7 @@ import AddCardModal from "./Tarjeta/AddCardModal";
 import EditCardModal from "./Tarjeta/EditCardModal";
 import DeleteCardModal from "./Tarjeta/DeleteCardModal";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import { clearCart } from '../Store/cartSlice'; 
+import { clearCart } from '../Store/cartSlice';
 import { useDispatch } from "react-redux";
 
 const Usuario_URI = "https://shopp-7acee9852abd.herokuapp.com/usuario/";
@@ -41,7 +41,7 @@ const UserProfileForm = () => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showDeleteCardModal, setShowDeleteCardModal] = useState(false);
   const [cardToEdit, cardToDelete] = useState(null);
-  const [cardIdToEdit, setCardIdToEdit] = useState(null); 
+  const [cardIdToEdit, setCardIdToEdit] = useState(null);
   const [cardIdToDelete, setCardIdToDelete] = useState(null)
   const role = useSelector((state) => state.auth.value);
   const email = useSelector((state) => state.auth.correo);
@@ -249,13 +249,6 @@ const UserProfileForm = () => {
               handleClose={() => setShowAddAddressModal(false)}
               refreshAddresses={refreshAddresses}
             />
-            <Button
-              variant="primary"
-              onClick={() => setShowAddCardModal(true)}
-              className="mt-3"
-            >
-              Agregar Tarjeta
-            </Button>
 
             <AddCardModal
               show={showAddCardModal}
@@ -325,8 +318,15 @@ const UserProfileForm = () => {
             />
           </div>
 
+          <Button
+            variant="primary"
+            onClick={() => setShowAddCardModal(true)}
+            className="mt-3"
+          >
+            Agregar Tarjeta
+          </Button>
           {cards.length > 0 && (
-            <Table striped bordered hover className="mt-5">
+            <Table striped bordered hover className="mt-3">
               <thead>
                 <tr>
                   <th>ID</th>
