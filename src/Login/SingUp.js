@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 
 const Signup = () => {
-  const Usuario_URI = "http://https://shopp-7acee9852abd.herokuapp.com/usuario/";
-  const ACCOUNT_URI = "http://https://shopp-7acee9852abd.herokuapp.com/account/";
+  const Usuario_URI = "https://shopp-7acee9852abd.herokuapp.com/usuario/";
+  const ACCOUNT_URI = "https://shopp-7acee9852abd.herokuapp.com/account/";
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

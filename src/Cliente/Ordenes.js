@@ -6,8 +6,8 @@ import SearchOrder from './SearchOrder';
 import { FaCheck } from "react-icons/fa";
 import OrderDetailsModal from './OrderDetailsModal';
 
-const URI = "http://https://shopp-7acee9852abd.herokuapp.com/sales/salesorders/";
-const URLEMAIL = "http://https://shopp-7acee9852abd.herokuapp.com/sales/salesorders/email/";
+const URI = "https://shopp-7acee9852abd.herokuapp.com/sales/salesorders/";
+const URLEMAIL = "https://shopp-7acee9852abd.herokuapp.com/sales/salesorders/email/";
 
 const SalesOrderList = () => {
   const [orders, setOrders] = useState([]);

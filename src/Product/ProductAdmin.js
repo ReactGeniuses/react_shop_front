@@ -8,7 +8,7 @@ import EditProductModal from "./ProductEdit";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 // URI de la API de productos
-const URI = "http://https://shopp-7acee9852abd.herokuapp.com/product/";
+const URI = "https://shopp-7acee9852abd.herokuapp.com/product/";
 
 export const AdminProductList = () => {
   const [products, setProducts] = useState([]);

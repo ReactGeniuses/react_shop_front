@@ -26,7 +26,7 @@ const AddCardModal = ({ show, handleClose}) => {
             };
 
             // Post to the URL with email and include email in the request body
-            await axios.post(`http://https://shopp-7acee9852abd.herokuapp.com/card/${email}`, completeFormData);
+            await axios.post(`https://shopp-7acee9852abd.herokuapp.com/card/${email}`, completeFormData);
             handleClose();
         } catch (error) {
             console.error('Error adding cards:', error);

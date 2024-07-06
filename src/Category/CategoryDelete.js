@@ -3,7 +3,7 @@ import { Modal, Button,Alert } from "react-bootstrap";
 
 import axios from "axios";
 
-const CATEGORY_URI = "http://https://shopp-7acee9852abd.herokuapp.com/category/";
+const CATEGORY_URI = "https://shopp-7acee9852abd.herokuapp.com/category/";
 
 const DeleteCategoryModal = ({ id, show, handleClose, refreshCategory }) => {
   const [error, setError] = useState('');

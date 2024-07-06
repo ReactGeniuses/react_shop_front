@@ -11,9 +11,9 @@ import EditCardModal from "./Tarjeta/EditCardModal";
 import DeleteCardModal from "./Tarjeta/DeleteCardModal";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
-const Usuario_URI = "http://https://shopp-7acee9852abd.herokuapp.com/usuario/";
-const Direccion_URI = "http://https://shopp-7acee9852abd.herokuapp.com/direccion/";
-const Card_URI = "http://https://shopp-7acee9852abd.herokuapp.com/card/";
+const Usuario_URI = "https://shopp-7acee9852abd.herokuapp.com/usuario/";
+const Direccion_URI = "https://shopp-7acee9852abd.herokuapp.com/direccion/";
+const Card_URI = "https://shopp-7acee9852abd.herokuapp.com/card/";
 
 const UserProfileForm = () => {
   const defaultState = {

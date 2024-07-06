@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const DeleteCardModal = ({ show, handleClose, refreshCards, id }) => {
   const email = useSelector((state) => state.auth.correo);
-  const Direccion_URI = "http://https://shopp-7acee9852abd.herokuapp.com/card/";
+  const Direccion_URI = "https://shopp-7acee9852abd.herokuapp.com/card/";
 
   const handleDelete = async () => {
     try {
