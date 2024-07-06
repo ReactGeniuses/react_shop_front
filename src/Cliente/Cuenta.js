@@ -316,9 +316,7 @@ const UserProfileForm = () => {
               refreshAddresses={refreshAddresses}
               addressId={addressIdToEdit}
             />
-          </div>
-
-          <Button
+            <Button
             variant="primary"
             onClick={() => setShowAddCardModal(true)}
             className="mt-3"
@@ -387,6 +385,8 @@ const UserProfileForm = () => {
             cardId={cardIdToEdit}
             handleEditCard={handleEditCard}
           />
+          </div>
+          
         </>
       )}
     </>
