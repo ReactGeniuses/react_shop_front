@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Alert, Table } from 'react-bootstrap';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { clearCart } from '../Store/cartSlice';
 
 const Usuario_URI = "https://shopp-7acee9852abd.herokuapp.com/usuario/";
 const ORDER_URI = "https://shopp-7acee9852abd.herokuapp.com/sales/salesorders";
@@ -26,6 +28,12 @@ const UserForm = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const [direcciones, setDirecciones] = useState([]);
   const [tarjetas, setTarjetasCredito] = useState([]);
+
+  const dispatch = useDispatch(); // Hook useDispatch
+  const navigate = useNavigate(); // Hook useNavigate
+
+  // Determinar si el usuario está logueado
+  const isLoggedIn = role === 3;
 
   const saleOrderMeth = async () => {
     try {
@@ -64,7 +72,12 @@ const UserForm = () => {
       });
 
       await Promise.all(promises);
-      setSuccess('Order and details created successfully');
+      setSuccess('Pedido y detalles creados con éxito');
+      dispatch(clearCart()); // Limpia el carrito
+      setTimeout(() => {
+        navigate('/'); // Redirige a la página principal
+      }, 3000); // 3000 milisegundos = 3 segundos
+
     } catch (error) {
       setError('Error in creating sales order details');
       console.error("Error in creating sales order details:", error);
@@ -73,17 +86,19 @@ const UserForm = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      if (role === 3) {
+      if (isLoggedIn) {
         try {
           const res = await axios.get(`${Usuario_URI}${email}`);
           const account = res.data;
-          setFormData({
+          const cardRes = await axios.get(`${CARD_URI}${email}`);
+
+          const updatedFormData = {
             nombre: account.Nombre,
             direccion: account.Direccion,
-          });
+            tarjetaCredito: cardRes.data, // asumiendo que `cardRes.data` contiene la tarjeta correcta
+          };
 
-          const cardRes = await axios.get(`${CARD_URI}${email}`);
-          setFormData({ ...formData, tarjetaCredito: cardRes.data });
+          setFormData(updatedFormData);
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -100,18 +115,20 @@ const UserForm = () => {
     };
 
     const fetchCreditCards = async () => {
-      try {
-        const res = await axios.get(`${CARD_URI}${email}`);
-        setTarjetasCredito(res.data);
-      } catch (error) {
-        console.error("Error fetching credit cards:", error);
+      if (isLoggedIn) {
+        try {
+          const res = await axios.get(`${CARD_URI}${email}`);
+          setTarjetasCredito(res.data);
+        } catch (error) {
+          console.error("Error fetching credit cards:", error);
+        }
       }
     };
 
     fetchUserData();
     fetchDirections();
     fetchCreditCards();
-  }, [role, email]);
+  }, [isLoggedIn, email]);
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
@@ -151,45 +168,69 @@ const UserForm = () => {
           placeholder="Ingrese su nombre"
         />
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="formDireccion">
         <Form.Label>Dirección</Form.Label>
-        <Form.Control
-          as="select"
-          name="direccion"
-          value={formData.direccion}
-          onChange={onInputChange}
-          placeholder="Ingrese su dirección"
-        >
-          <option value="">Selecciona una direccion</option>
-          {direcciones.map((direccion) => (
-            <option key={direccion.Id} value={direccion.DireccionDescripcion}>
-              {direccion.NombreDireccion}
-            </option>
-          ))}
-        </Form.Control>
+        {isLoggedIn ? (
+          <Form.Control
+            as="select"
+            name="direccion"
+            value={formData.direccion}
+            onChange={onInputChange}
+            placeholder="Ingrese su dirección"
+          >
+            <option value="">Selecciona una dirección</option>
+            {direcciones.map((direccion) => (
+              <option key={direccion.Id} value={direccion.DireccionDescripcion}>
+                {direccion.NombreDireccion}
+              </option>
+            ))}
+          </Form.Control>
+        ) : (
+          <Form.Control
+            type="text"
+            name="direccion"
+            value={formData.direccion}
+            onChange={onInputChange}
+            placeholder="Ingrese su dirección"
+          />
+        )}
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="formTarjetaCredito">
         <Form.Label>Tarjetas</Form.Label>
-        <Form.Control
-          as="select"
-          name="tarjetaCredito"
-          value={formData.TipoTarjeta}
-          onChange={onInputChange}
-          placeholder="Seleccione su tarjeta de crédito"
-        >
-          <option value="">Selecciona una tarjeta de crédito</option>
-          {tarjetas.map((tarjeta) => (
-            <option key={tarjeta.TarjetaId} value={tarjeta.NumeroTarjeta}>
-              {tarjeta.NumeroTarjeta} - Últimos tres dígitos: {tarjeta.UltimosTresNumeros}
-            </option>
-          ))}
-        </Form.Control>
+        {isLoggedIn ? (
+          <Form.Control
+            as="select"
+            name="tarjetaCredito"
+            value={formData.tarjetaCredito}
+            onChange={onInputChange}
+            placeholder="Seleccione su tarjeta de crédito"
+          >
+            <option value="">Selecciona una tarjeta de crédito</option>
+            {tarjetas.map((tarjeta) => (
+              <option key={tarjeta.TarjetaId} value={tarjeta.NumeroTarjeta}>
+                {tarjeta.NumeroTarjeta} - Últimos tres dígitos: {tarjeta.UltimosTresNumeros}
+              </option>
+            ))}
+          </Form.Control>
+        ) : (
+          <Form.Control
+            type="text"
+            name="tarjetaCredito"
+            value={formData.tarjetaCredito}
+            onChange={onInputChange}
+            placeholder="Ingrese su tarjeta de crédito"
+          />
+        )}
       </Form.Group>
+
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">{success}</Alert>}
       <Button variant="primary" type="submit">
         Enviar
       </Button>
+
       {cartItems.length > 0 && (
         <Table striped bordered hover className='mt-4'>
           <thead>
