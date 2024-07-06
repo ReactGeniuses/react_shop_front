@@ -1,60 +1,62 @@
-import { Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
-export const ProductSearchBar = () => {
-    const [searchById, setSearchById] = useState('');
-    const [searchByName, setSearchByName] = useState('');
-    const [searchParams, setSearchParams] = useSearchParams(); 
+const ProductSearchBar = ({ onSearch, categories }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchType, setSearchType] = useState('nombre');
 
-    const onSearchByIdChange = (event) => {
-        const value = event.target.value;
-        setSearchById(value);
-    };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchType);
+    console.log(searchTerm);
+    onSearch(searchTerm, searchType);
+  };
 
-    const onSearchByNameChange = (event) => {
-        const value = event.target.value;
-        setSearchByName(value);
-    };
-
-    const onClickHandler = () => {
-        const params = new URLSearchParams(searchParams);
-        if(searchById){
-            params.set('id', searchById);
-        } else {
-            params.delete('id');
-        }
-        if(searchByName){
-            params.set('name', searchByName);
-        } else {
-            params.delete('name');
-        }
-    
-        setSearchParams(params);
-    };
-    
-    
-    return (
-        <Form className="d-flex search-bar">
+  return (
+    <Form onSubmit={handleSearch} className="mb-3">
+      <Row>
+        <Col md={8}>
+          {searchType === 'categoria' ? (
             <Form.Control
-                type="search"
-                placeholder="Search Product by ID"
-                className="me-2"
-                aria-label="Search by ID"
-                value={searchById}
-                onInput={onSearchByIdChange}
-            />
+              as="select"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            >
+              <option value="">Seleccionar categoría</option>
+              {categories.map((category) => (
+                <option key={category.Id} value={category.CategoryName}>
+                  {category.CategoryName}
+                </option>
+              ))}
+            </Form.Control>
+          ) : (
             <Form.Control
-                type="search"
-                placeholder="Search Product by Name"
-                className="me-2"
-                aria-label="Search by Name"
-                value={searchByName}
-                onInput={onSearchByNameChange}
+              type="text"
+              placeholder="Buscar..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button onClick={onClickHandler} variant="outline-success">Search</Button>
-        </Form>
-    );
+          )}
+        </Col>
+        <Col md={3}>
+          <Form.Control
+            as="select"
+            value={searchType}
+            onChange={(e) => setSearchType(e.target.value)}
+          >
+            <option value="categoria">Categoría</option>
+            <option value="nombre">Nombre Producto</option>
+            <option value="Descripcion">Descripción del producto</option>
+          </Form.Control>
+        </Col>
+        <Col md={1}>
+          <Button type="submit" variant="primary">
+            Buscar
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  );
 };
 
 export default ProductSearchBar;

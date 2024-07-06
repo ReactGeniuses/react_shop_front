@@ -4,7 +4,7 @@ import axios from 'axios';
 import { addProduct } from "../Store/cartSlice";
 import AddWishlistModal from "../Cliente/WishList/WishListAdd";
 import SortingDropdown from '../Menu/SortingDropdown'; 
-import SearchBar from "../Menu/SearchBarProduct";
+import ProductSearchBar from "./ProductSearchBar";
 import ViewProductModal from "./DetailsProduct"
 
 const PRODUCT_URI = "https://shopp-7acee9852abd.herokuapp.com/product/";
@@ -150,7 +150,7 @@ export const ProductList = () => {
   return (
     <div className="container">
       <SortingDropdown onSortChange={handleSortChange} />
-      <SearchBar onSearch={handleSearch} categories={categories} />
+      <ProductSearchBar onSearch={handleSearch} categories={categories} />
       <div className="container-items">
         {error && (
           <div className="alert alert-danger mt-3">{error}</div>
