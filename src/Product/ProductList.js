@@ -4,7 +4,7 @@ import axios from 'axios';
 import { addProduct } from "../Store/cartSlice";
 import AddWishlistModal from "../Cliente/WishList/WishListAdd";
 import SortingDropdown from '../Menu/SortingDropdown'; 
-import ProductSearchBar from "./ProductSearchBar";
+import ProductSearchBar from "./ProductSearchBar.js";
 import ViewProductModal from "./DetailsProduct"
 
 const PRODUCT_URI = "https://shopp-7acee9852abd.herokuapp.com/product/";
