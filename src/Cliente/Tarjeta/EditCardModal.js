@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const EditCardModal = ({ show, handleClose, refreshCards, cardId }) => {
     const email = useSelector((state) => state.auth.correo);
-    const Card_URI = "http://https://shopp-7acee9852abd.herokuapp.com//card/";
+    const Card_URI = "http://https://shopp-7acee9852abd.herokuapp.com/card/";
 
     const [formData, setFormData] = useState({
         TipoTarjeta: '',

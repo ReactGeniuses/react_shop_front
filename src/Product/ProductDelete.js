@@ -3,7 +3,7 @@ import { Modal, Button,Alert } from "react-bootstrap";
 
 import axios from "axios";
 
-const PRODUCT_URI = "http://https://shopp-7acee9852abd.herokuapp.com//product/";
+const PRODUCT_URI = "http://https://shopp-7acee9852abd.herokuapp.com/product/";
 
 const DeleteProductModal = ({ id, show, handleClose, refreshProducts }) => {
   const [error, setError] = useState('');

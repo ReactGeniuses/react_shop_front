@@ -9,7 +9,7 @@ import SearchBarAdmin from "../Menu/SearchOrderAdmin"
 import { useSelector } from 'react-redux'; // Import useSelector
 
 // URI de la API de órdenes de ventas
-const URI = "http://https://shopp-7acee9852abd.herokuapp.com//sales/salesorders";
+const URI = "http://https://shopp-7acee9852abd.herokuapp.com/sales/salesorders";
 
 export const SalesOrderList = () => {
   const [orders, setOrders] = useState([]);
