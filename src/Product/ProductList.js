@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { addProduct } from "../Store/cartSlice";
 import AddWishlistModal from "../Cliente/WishList/WishListAdd";
-import SortingDropdown from '../Menu/SortingDropdown'; // Import the new dropdown component
+import SortingDropdown from '../Menu/SortingDropdown';
 import SearchBar from "../Menu/SearchBarProduct";
 import ViewProductModal from "./DetailsProduct"
 
@@ -73,6 +73,7 @@ export const ProductList = () => {
 
   useEffect(() => {
     getProducts();
+    fetchCategories();
   }, []);
 
   useEffect(() => {
