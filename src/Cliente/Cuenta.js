@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Alert, Modal, Table } from "react-bootstrap";
 import axios from "axios";
+import './Cuenta.css'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AddAddressModal from "./Direccion/AddAddressModal";

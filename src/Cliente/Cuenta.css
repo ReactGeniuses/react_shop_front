@@ -1,0 +1,93 @@
+/* Cuenta.css */
+
+/* General styles */
+.user-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .user-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .user-form .form-label {
+    font-weight: bold;
+  }
+  
+  .user-form .form-control {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .user-form .btn-link {
+    padding: 0;
+    font-weight: bold;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  .container .btn-primary {
+    margin-bottom: 15px;
+  }
+  
+  .table {
+    margin-top: 20px;
+  }
+  
+  /* Table styles */
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .table th {
+    background-color: #143959;
+    color: #fff;
+  }
+  
+  .table td {
+    background-color: #f4f4f4;
+  }
+  
+  /* Button styles */
+  .btn-warning, .btn-danger {
+    margin-right: 5px;
+  }
+  
+  .btn-warning {
+    background-color: #ff9800;
+    border-color: #ff9800;
+  }
+  
+  .btn-danger {
+    background-color: #f44336;
+    border-color: #f44336;
+  }
+  
+  .btn-primary {
+    background-color: #143959;
+    border-color: #143959;
+  }
+  
+  /* Modal styles */
+  .modal-header {
+    background-color: #143959;
+    color: #fff;
+  }
+  
+  .modal-footer .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  .modal-footer .btn-primary {
+    background-color: #143959;
+    border-color: #143959;
+  }  
