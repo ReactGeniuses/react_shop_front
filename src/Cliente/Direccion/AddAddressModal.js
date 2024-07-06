@@ -24,7 +24,7 @@ const AddAddressModal = ({ show, handleClose, refreshAddresses }) => {
       const completeFormData = { ...formData, email };
   
       // Post to the URL with email and include email in the request body
-      await axios.post(`http://localhost:8000/direccion/${email}`, completeFormData);
+      await axios.post(`http://https://shopp-7acee9852abd.herokuapp.com//direccion/${email}`, completeFormData);
       refreshAddresses();
       handleClose();
     } catch (error) {

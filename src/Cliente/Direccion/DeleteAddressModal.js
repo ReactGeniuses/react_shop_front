@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const DeleteAddressModal = ({ show, handleClose, refreshAddresses, id }) => { // Cambié addressId por id
   const email = useSelector((state) => state.auth.correo);
-  const Direccion_URI = "http://localhost:8000/direccion/";
+  const Direccion_URI = "http://https://shopp-7acee9852abd.herokuapp.com//direccion/";
 
   const handleDelete = async () => {
     try {

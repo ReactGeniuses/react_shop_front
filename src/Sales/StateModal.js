@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 
-const SALES_ORDER_URI = "http://localhost:8000/sales/salesorders";
+const SALES_ORDER_URI = "http://https://shopp-7acee9852abd.herokuapp.com//sales/salesorders";
 
 const UpdateStateOrderModal = ({ id, show, handleClose, refreshOrders }) => {
   const [error, setError] = useState('');

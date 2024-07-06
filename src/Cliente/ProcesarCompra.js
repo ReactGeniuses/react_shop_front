@@ -3,11 +3,11 @@ import { Button, Form, Alert, Table } from 'react-bootstrap';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-const Usuario_URI = "http://localhost:8000/usuario/";
-const ORDER_URI = "http://localhost:8000/sales/salesorders";
-const DETAIL_URI = "http://localhost:8000/sales/salesordersdetails";
-const Direccion_URI = "http://localhost:8000/direccion/";
-const CARD_URI = "http://localhost:8000/card/";
+const Usuario_URI = "http://https://shopp-7acee9852abd.herokuapp.com//usuario/";
+const ORDER_URI = "http://https://shopp-7acee9852abd.herokuapp.com//sales/salesorders";
+const DETAIL_URI = "http://https://shopp-7acee9852abd.herokuapp.com//sales/salesordersdetails";
+const Direccion_URI = "http://https://shopp-7acee9852abd.herokuapp.com//direccion/";
+const CARD_URI = "http://https://shopp-7acee9852abd.herokuapp.com//card/";
 
 
 const UserForm = () => {

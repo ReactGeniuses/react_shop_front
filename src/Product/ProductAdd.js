@@ -3,8 +3,8 @@ import { Modal, Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
 // URIs de la API
-const PRODUCT_URI = "http://localhost:8000/product/";
-const CATEGORY_URI = "http://localhost:8000/category/";
+const PRODUCT_URI = "http://https://shopp-7acee9852abd.herokuapp.com//product/";
+const CATEGORY_URI = "http://https://shopp-7acee9852abd.herokuapp.com//category/";
 
 export const AddProductModal = ({ show, handleClose, refreshProducts }) => {
   const [formData, setFormData] = useState({

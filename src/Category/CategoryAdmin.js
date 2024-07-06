@@ -7,7 +7,7 @@ import EditCategoryModal from "./CategoryEdit";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 // URI de la API de productos
-const URI = "http://localhost:8000/category/";
+const URI = "http://https://shopp-7acee9852abd.herokuapp.com//category/";
 
 export const AdminCategoryList = () => {
   const [category, setCategory] = useState([]);

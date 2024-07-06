@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
-const CATEGORY_URI = "http://localhost:8000/category/";
+const CATEGORY_URI = "http://https://shopp-7acee9852abd.herokuapp.com//category/";
 
 const EditCategoryModal = ({ show, handleClose, refreshCategory, categoryId }) => {
   const [formData, setFormData] = useState({

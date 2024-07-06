@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const EditAddressModal = ({ show, handleClose, refreshAddresses, addressId }) => {
     const email = useSelector((state) => state.auth.correo);
-    const Direccion_URI = "http://localhost:8000/direccion/";
+    const Direccion_URI = "http://https://shopp-7acee9852abd.herokuapp.com//direccion/";
 
   const [formData, setFormData] = useState({
     NombreDireccion: '',
@@ -20,7 +20,7 @@ const EditAddressModal = ({ show, handleClose, refreshAddresses, addressId }) =>
       if (addressId) {
         try {
             // Combine formData with email
-          const res = await axios.get(`http://localhost:8000/direccion/${email}/${addressId}`);
+          const res = await axios.get(`http://https://shopp-7acee9852abd.herokuapp.com//direccion/${email}/${addressId}`);
           setFormData(res.data);
         } catch (error) {
           console.error('Error fetching address:', error);

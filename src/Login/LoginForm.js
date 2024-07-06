@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../Store/AuthSlice';
 import axios from "axios";
 
-const ACCOUNT_URI = "http://localhost:8000/account/";
+const ACCOUNT_URI = "http://https://shopp-7acee9852abd.herokuapp.com//account/";
 
 const LoginForm = () => {
     const defaultState = {

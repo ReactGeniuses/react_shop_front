@@ -6,8 +6,8 @@ import AddWishlistModal from "../Cliente/WishList/WishListAdd";
 import SortingDropdown from '../Menu/SortingDropdown'; // Import the new dropdown component
 import SearchBar from "../Menu/SearchBarProduct";
 import ViewProductModal from "./DetailsProduct"
-const PRODUCT_URI = "http://localhost:8000/product/";
-const WISH_URI = "http://localhost:8000/wish/";
+const PRODUCT_URI = "http://https://shopp-7acee9852abd.herokuapp.com//product/";
+const WISH_URI = "http://https://shopp-7acee9852abd.herokuapp.com//wish/";
 
 export const ProductList = () => {
   const dispatch = useDispatch();
